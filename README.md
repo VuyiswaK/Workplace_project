@@ -1,7 +1,7 @@
 # Workplace_project
 Descripe the data and project 
 
-##Important links
+## Important links
 **Project planning**: Click [here](https://trello.com/b/xmYPabfb/workplace-project) for trello project progress board.
 
 **Presentation slides**: Click [here](https://docs.google.com/presentation/d/1LY5Smb_PuqboQQasrJBPjQyH3A2vt6ji4ydF6Vteieg/edit#slide=id.gc6f980f91_0_0) for google slides presentation.
