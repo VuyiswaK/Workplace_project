@@ -196,7 +196,7 @@ def main():
             
             if model is not None:
                 prediction = model.predict([variables])
-                st.success(f"Profit score: {prediction}")
+                st.success(f"Profit score: {int(prediction[0])}")
                 if int(prediction[0]) == 1:
                     image_url = ps1
                     text = 'You are in the red zone and most likely to default. It may that you can no longer afford to finance the debt. Worry not there are ways to resolve this if you reach out to us, but please be swift.'
