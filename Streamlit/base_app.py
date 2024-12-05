@@ -33,6 +33,8 @@ import requests
 import base64
 import pickle
 
+images
+
 # Function to fetch and load a pickle file from a URL
 def load_pickle_from_url(url, token):
     headers = {'Authorization': f'token {token}'}
@@ -111,7 +113,9 @@ def main():
             
             if model is not None:
                 prediction = model.predict([variables])
-                st.success(f"Text Category: {int(prediction[0])}")
+                #st.success(f"Text Category: {int(prediction[0])}")
+                if int(prediction[0]) == 1:
+                    image_url = "https://example.com/path/to/your/image.jpg" # Display image and text side by side col1, col2 = st.columns([1, 3]) with col1: st.image(image_url, width=100) # Adjust width as needed with col2: st.write("This is the text next to the image. You can add more details here.") # Additional content st.write("More content below the image and text."
 
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
