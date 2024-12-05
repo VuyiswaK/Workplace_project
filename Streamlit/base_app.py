@@ -103,7 +103,7 @@ def main():
                                   Spend_percentage])
 
             # Replace with your GitHub personal access token
-            token = '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'
+            token = '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'
             # Use the raw URL for the pickle file
             model_url = 'https://raw.githubusercontent.com/VuyiswaK/Workplace_project/main/Streamlit/prediction_model.pkl'
 
@@ -111,7 +111,7 @@ def main():
             
             if model is not None:
                 prediction = model.predict([variables])
-                st.success(f"Text Category: {prediction}")
+                st.success(f"Text Category: {int(prediction[0])}")
 
 # Required to let Streamlit instantiate our web app.  
 if __name__ == '__main__':
