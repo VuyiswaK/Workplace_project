@@ -37,13 +37,6 @@ from io import BytesIO
 from PIL import Image
 
 
-# Set your token as an environment variable
-os.environ['GITHUB_TOKEN'] = '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'
-
-# Access the token in your app
-token = os.getenv('GITHUB_TOKEN')
-
-
 # Images
 ps1 = 'https://raw.githubusercontent.com/VuyiswaK/Workplace_project/main/Streamlit/ps1.jpg'
 ps2 = 'https://raw.githubusercontent.com/VuyiswaK/Workplace_project/main/Streamlit/ps2.png'
@@ -55,9 +48,18 @@ ps789 = 'https://raw.githubusercontent.com/VuyiswaK/Workplace_project/main/Strea
 ps10 = 'https://raw.githubusercontent.com/VuyiswaK/Workplace_project/main/Streamlit/ps10.png'
 
 # Function to fetch and load a pickle file from a URL
-def load_pickle_from_url(url, token):
-    headers = {'Authorization': f'token {token}'}
-    response = requests.get(url, headers=headers)
+#def load_pickle_from_url(url, token):
+#    headers = {'Authorization': f'token {token}'}
+#    response = requests.get(url, headers=headers)
+#    if response.status_code == 200:
+        # Use BytesIO to treat the bytes response as a file-like object
+#        return joblib.load(BytesIO(response.content))
+#    else:
+#        st.error(f"Error loading the file from URL: {url} (Status code: {response.status_code})")
+#        return None
+
+def load_pickle_from_url(url):
+    response = requests.get(url)
     if response.status_code == 200:
         # Use BytesIO to treat the bytes response as a file-like object
         return joblib.load(BytesIO(response.content))
@@ -66,9 +68,19 @@ def load_pickle_from_url(url, token):
         return None
 
 # Function to fetch and load an image from a URL using a token
-def load_image_from_url(url, token):
-    headers = {'Authorization': f'token {token}'}
-    response = requests.get(url, headers=headers)
+#def load_image_from_url(url, token):
+#    headers = {'Authorization': f'token {token}'}
+#    response = requests.get(url, headers=headers)
+#    if response.status_code == 200:
+        # Use BytesIO to treat the bytes response as a file-like object
+#        return Image.open(BytesIO(response.content))
+#    else:
+#        st.error(f"Error loading the image from URL: {url} (Status code: {response.status_code})")
+#        return None
+
+def load_image_from_url(url):
+    #headers = {'Authorization': f'token {token}'}
+    response = requests.get(url)
     if response.status_code == 200:
         # Use BytesIO to treat the bytes response as a file-like object
         return Image.open(BytesIO(response.content))
@@ -180,7 +192,7 @@ def main():
             # Use the raw URL for the pickle file
             model_url = 'https://raw.githubusercontent.com/VuyiswaK/Workplace_project/main/Streamlit/prediction_model.pkl'
 
-            model = load_pickle_from_url(model_url, token)
+            model =  load_pickle_from_url(model_url)
             
             if model is not None:
                 prediction = model.predict([variables])
@@ -208,13 +220,13 @@ def main():
                     text = 'You are indeed the cherry on top, the top 0.05% of our profitable clients. You overachiever, how do you do it !'
                 else:
                     image_url = ps789
-                    text = 'Well done, you are a reasonably profitable client. We may just reward you for this type of behaviour'
+                    text = 'Well done, you are a reasonably profitable client. We may just reward you for this type of behaviour.'
                                
                 # Display image and text side by side
                 col1, col2, = st.columns([2, 2])
                 
                 with col1:
-                    st.image(load_image_from_url(image_url, token), width=200)  # Adjust width as needed
+                    st.image(load_image_from_url(image_url), width=200)  # Adjust width as needed
                 
                 with col2:
                     st.markdown(f"<p style='font-size:20px;'>{text}</p>", unsafe_allow_html=True)
